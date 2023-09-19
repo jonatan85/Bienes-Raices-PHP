@@ -1,0 +1,104 @@
+.derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        align-items: flex-end;
+    }
+    .dark-mode-boton {
+        width: 3rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        // Invierte el color en este caso de el logo que es negro pasa a blanco
+        filter: invert(100%);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include tablet {
+            margin-top: 0;
+        }
+    }
+}
+
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+    // Utilizamos include par utilizar los mixis que hemos definido previamente.
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+}
+
+.navegacion {
+
+    // Este display hace que en pantallas de movil no aparezca el nav pero en pantallas mas grandes si
+    // display: none;
+
+    // Para agregar animaciones en la clase de mostrar sigue la explicación quitamos el display none por que no lo podemos animar
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    // Para animar usamos la propiedad transition
+    // Le indicamos que queremos animar la duracion y el tipo de animacion
+    transition: visibility .3s ease-in-out, opacity .5s linear, height .5s linear;
+
+    @include tablet {
+        display: flex;
+        align-items: center;
+        // Para que se vea el nav si tiene animación
+        visibility: visible;
+        opacity: 1;
+    }
+
+    a {
+        color: $blanco;
+        text-decoration: none;
+        font-size: 2.2rem;
+        display: block;
+        text-align: center;
+
+        @include tablet {
+            margin-right: 2rem;
+
+            // Aplica estilos a el ultimo elemento de una lista de elementos iguales vease una barra de navegacion donde tolos los ul son iguales.
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+// Menu de hamburguesa
+.mobile-menu {
+    @include tablet {
+        display: none;
+    }
+
+    img {
+        width: 5rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// Para mostrar el menu de hamburguesa asociado a js
+.mostrar {
+    // display: flex;
+    // flex-direction: column;
+    // @include tablet {
+    //     flex-direction: row;
+    // }
+
+    // Para que se vea y podamos darle una animacion a el menu de hamburguesa asociado a los visivility
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+}
